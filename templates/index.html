@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption/Decryption Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .cipher-type {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 5px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #e7e7e7;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cipher-type:hover, .cipher-type.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .key-input, .input, .output {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+<div class="container">
+    <div id="cipherSelection">
+        <button class="cipher-type" id="shiftCipher">Shift Cipher</button>
+        <button class="cipher-type" id="permutationCipher">Permutation Cipher</button>
+        <button class="cipher-type" id="substitutionCipher">Substitution Cipher</button>
+    </div>
+    <div>
+        <input type="text" class="key-input" placeholder="Key...">
+    </div>
+    <div>
+        <textarea class="input" placeholder="Enter text to encrypt or decrypt..."></textarea>
+        <textarea class="output" placeholder="Result will appear here..." readonly></textarea>
+    </div>
+    <div>
+        <button class="button" id="encryptButton">Encrypt</button>
+        <button class="button" id="decryptButton">Decrypt</button>
+    </div>
+</div>
+
+<script>
+
+    document.getElementById('encryptButton').addEventListener('click', function () {
+        var keyInput = document.querySelector('.key-input').value;
+        var textInput = document.querySelector('.input').value;
+        var outputArea = document.querySelector('.output');
+        var activeCipherButton = document.querySelector('.cipher-type.active');
+        var cipherType = activeCipherButton ? activeCipherButton.id : null;
+
+        fetch('/encrypt', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                text: textInput,
+                key: keyInput,
+                cipherType: cipherType,
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('.output').value = data.encryptedText;
+            });
+    });
+
+
+    // decryption
+    document.getElementById('decryptButton').addEventListener('click', function () {
+        // Decryption logic can be added here following a similar pattern
+        // For now, it will just echo the encrypted text
+        var keyInput = document.querySelector('.key-input').value;
+        var textInput = document.querySelector('.input').value;
+        var outputArea = document.querySelector('.output');
+        var activeCipherButton = document.querySelector('.cipher-type.active');
+        var cipherType = activeCipherButton ? activeCipherButton.id : null;
+        var key;
+        var decryptedText = 'Decryption is not yet implemented.';
+        fetch('/decrypt', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                text: textInput,
+                key: keyInput,
+                cipherType: cipherType,
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('.output').value = data.decryptedText;
+            });
+
+    });
+
+
+    // Example of adding active class to the selected cipher type
+    document.getElementById('cipherSelection').addEventListener('click', function (e) {
+        if (e.target && e.target.nodeName == "BUTTON") {
+            let buttons = document.getElementsByClassName('cipher-type');
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+            e.target.classList.add('active');
+        }
+    });
+
+
+</script>
+
+</body>
+</html>

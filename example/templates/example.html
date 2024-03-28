@@ -1,0 +1,23 @@
+<input type="text" id="dataInput" placeholder="Enter some data...">
+<button onclick="submitData()">Submit Data</button>
+<div id="response"></div>
+
+<script>
+function submitData() {
+    var data = document.getElementById('dataInput').value;
+    fetch('/submit-data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data: data, data1: 3 }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('response').innerHTML = '<p>Received data: ' + data.message + '</p>';
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+</script>
