@@ -1,4 +1,4 @@
-from validation import count_words_in_text
+from py.validation import is_sentence
 
 def shift_cipher(text, key):
     result = ''
@@ -15,12 +15,21 @@ def shift_cipher(text, key):
     return result
 
 
+# def brute_force_caesar_cipher(text):
+#     array = [0] * 26
+#     for shift in range(1, 27):
+#         decrypted = shift_cipher(text, -shift)
+#         array[shift - 1] = is_sentence(decrypted)
+#     max_value = max(array)
+#     max_index = array.index(max_value) + 1
+#     print(max_index)
+#     result = shift_cipher(text, -max_index)
+#     return result
+
 def brute_force_caesar_cipher(text):
     array = [0] * 26
     for shift in range(1, 27):
         decrypted = shift_cipher(text, -shift)
-        array[shift - 1] = count_words_in_text(decrypted)
-    max_value = max(array)
-    max_index = array.index(max_value)
-    result = shift_cipher(text, -max_index)
-    return result
+        decrypted_text, flag = is_sentence(decrypted)
+        if flag:
+            return decrypted_text

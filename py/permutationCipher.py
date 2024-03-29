@@ -18,8 +18,8 @@ def permutation_cipher(text, key):
 
 # Example usage
 # key = [3,5,1,6,4,2]
-key = "351642"
-key = [int(digit) for digit in key]
-text = "shesellsseashellsbytheseashore"
-
-print(permutation_cipher(text, key))
+# key = "351642"
+# key = [int(digit) for digit in key]
+# text = "shesellsseashellsbytheseashore"
+#
+# print(permutation_cipher(text, key))
