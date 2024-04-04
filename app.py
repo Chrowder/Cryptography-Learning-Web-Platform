@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from py.shiftCipher import shift_cipher, brute_force_caesar_cipher
 from py.substitutionCipher import substitution_cipher,decrypt_substitution_cipher
-from py.permutationCipher import permutation_cipher
+from py.permutationCipher import permutation_cipher, decrypt_permutation_cipher, brute_force_permutation_cipher
 
 app = Flask(__name__)
 
@@ -12,7 +12,11 @@ def index():
     return render_template('index.html')
 
 
-# 加密路由
+
+
+
+
+
 @app.route('/encrypt', methods=['POST'])
 def encrypt():
     text = request.json['text']
@@ -31,7 +35,10 @@ def encrypt():
     return jsonify(encryptedText = f"{encrypted_text}")
 
 
-# 解密路由
+
+
+
+
 @app.route('/decrypt', methods=['POST'])
 def decrypt():
     text = request.json['text']
@@ -42,7 +49,7 @@ def decrypt():
         if cipher_type == 'shiftCipher':
             decrypted_text = shift_cipher(text, -int(key))
         elif cipher_type == 'permutationCipher':
-            decrypted_text = permutation_cipher(text, [int(digit) for digit in key])
+            decrypted_text = decrypt_permutation_cipher(text, [int(digit) for digit in key])
         elif cipher_type == 'substitutionCipher':
             decrypted_text = decrypt_substitution_cipher(text, key)
         else:
@@ -50,8 +57,8 @@ def decrypt():
     else:
         if cipher_type == 'shiftCipher':
             decrypted_text = brute_force_caesar_cipher(text)
-        # elif cipher_type == 'permutationCipher':
-        #
+        elif cipher_type == 'permutationCipher':
+            decrypted_text = brute_force_permutation_cipher(text)
         # elif cipher_type == 'substitutionCipher':
 
         else:
