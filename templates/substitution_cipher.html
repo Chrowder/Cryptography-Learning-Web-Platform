@@ -185,7 +185,7 @@
         <section class="section3">
             <div class="jumbotron">
                 <div>
-                    <h2 id="tool" class="bookmark" style="margin-bottom: 10px">Shift Cipher Tool</h2>
+                    <h2 id="tool" class="bookmark" style="margin-bottom: 10px">Substitution Cipher Tool</h2>
                 </div>
                 <div>
                     <textarea class="input" rows="5" style="margin-bottom: 10px" placeholder="Enter text to encrypt or decrypt..." id="srcText"></textarea>
@@ -231,7 +231,7 @@
             var keyInput = document.querySelector('.key-input').value;
             var textInput = document.querySelector('.input').value;
 
-            fetch('/shift_encrypt', {
+            fetch('/substitution_encrypt', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -264,7 +264,7 @@
             var textInput = document.querySelector('.input').value;
 
             var decryptedText = 'Decryption is not yet implemented.';
-            fetch('/shift_decrypt', {
+            fetch('/substitution_decrypt', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -290,27 +290,27 @@
                 hideElement('result');
                 return;
             }
+            return;
 
-
-            var textInput = document.querySelector('.input').value;
-
-            var decryptedText = 'Decryption is not yet implemented.';
-            fetch('/shift_brute_decrypt', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    text: textInput,
-                }),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    document.querySelector('.output').value = data.decryptedText;
-                });
-
-
-            document.getElementById('resultLabel').innerText = 'Decrypted message without key.';
-            showElement('result');
-            scrollTo('result');
+            // var textInput = document.querySelector('.input').value;
+            //
+            // var decryptedText = 'Decryption is not yet implemented.';
+            // fetch('/substitution_brute_decrypt', {
+            //     method: 'POST',
+            //     headers: {'Content-Type': 'application/json'},
+            //     body: JSON.stringify({
+            //         text: textInput,
+            //     }),
+            // })
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         document.querySelector('.output').value = data.decryptedText;
+            //     });
+            //
+            //
+            // document.getElementById('resultLabel').innerText = 'Decrypted message without key.';
+            // showElement('result');
+            // scrollTo('result');
 
 
         }
@@ -415,7 +415,7 @@
 
             var downloadLink = document.createElement('a');
             downloadLink.href = downloadUrl;
-            downloadLink.download = document.getElementById('resultLabel').innerText + ".txt"; // 文件名
+            downloadLink.download = document.getElementById('resultLabel').innerText + ".txt";
 
 
             document.body.appendChild(downloadLink);

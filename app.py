@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from py.shiftCipher import shift_cipher, brute_force_caesar_cipher
+from py.shiftCipher import shift_cipher, brute_force_shift_cipher
 from py.substitutionCipher import substitution_cipher,decrypt_substitution_cipher
 from py.permutationCipher import permutation_cipher, decrypt_permutation_cipher, brute_force_permutation_cipher
 
@@ -10,9 +10,6 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
-
-
-
 
 
 
@@ -56,7 +53,7 @@ def decrypt():
             decrypted_text = "Invalid cipher type selected."
     else:
         if cipher_type == 'shiftCipher':
-            decrypted_text = brute_force_caesar_cipher(text)
+            decrypted_text = brute_force_shift_cipher(text)
         elif cipher_type == 'permutationCipher':
             decrypted_text = brute_force_permutation_cipher(text)
         # elif cipher_type == 'substitutionCipher':

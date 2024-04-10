@@ -185,7 +185,7 @@
         <section class="section3">
             <div class="jumbotron">
                 <div>
-                    <h2 id="tool" class="bookmark" style="margin-bottom: 10px">Shift Cipher Tool</h2>
+                    <h2 id="tool" class="bookmark" style="margin-bottom: 10px">Permutation Cipher Tool</h2>
                 </div>
                 <div>
                     <textarea class="input" rows="5" style="margin-bottom: 10px" placeholder="Enter text to encrypt or decrypt..." id="srcText"></textarea>
@@ -197,8 +197,8 @@
                     </div>
                 </div>
                 <div class="tooltip-container">
-                    <input class="key-input" placeholder="Key..." id="key" type="number" min="0" max="26" >
-                    <span class="tooltiptext">The key value should be [0, 26]</span>
+                    <input class="key-input" placeholder="Key..." id="key" type="number">
+<!--                    <span class="tooltiptext">The key value should be [0, 26]</span>-->
                 </div>
 
                 <div>
@@ -228,10 +228,11 @@
                 return;
             }
 
+
             var keyInput = document.querySelector('.key-input').value;
             var textInput = document.querySelector('.input').value;
 
-            fetch('/shift_encrypt', {
+            fetch('/permutation_encrypt', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -247,8 +248,6 @@
             document.getElementById('resultLabel').innerText = 'Encrypted message';
             showElement('result');
             scrollTo('result');
-
-
         }
 
         function decryptClick() {
@@ -259,12 +258,11 @@
 
 
 
-
             var keyInput = document.querySelector('.key-input').value;
             var textInput = document.querySelector('.input').value;
 
             var decryptedText = 'Decryption is not yet implemented.';
-            fetch('/shift_decrypt', {
+            fetch('/permutation_decrypt', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -282,6 +280,7 @@
             showElement('result');
             scrollTo('result');
 
+
         }
 
         function bruteDecryptClick(){
@@ -295,7 +294,7 @@
             var textInput = document.querySelector('.input').value;
 
             var decryptedText = 'Decryption is not yet implemented.';
-            fetch('/shift_brute_decrypt', {
+            fetch('/permutation_brute_decrypt', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -309,6 +308,7 @@
 
 
             document.getElementById('resultLabel').innerText = 'Decrypted message without key.';
+
             showElement('result');
             scrollTo('result');
 

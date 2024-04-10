@@ -26,7 +26,7 @@ def shift_cipher(text, key):
 #     result = shift_cipher(text, -max_index)
 #     return result
 
-def brute_force_caesar_cipher(text):
+def brute_force_shift_cipher(text):
     array = [0] * 26
     for shift in range(1, 27):
         decrypted = shift_cipher(text, -shift)
