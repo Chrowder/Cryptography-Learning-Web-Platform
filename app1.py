@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from py.shiftCipher import shift_cipher, brute_force_shift_cipher
-from py.substitutionCipher import substitution_cipher,decrypt_substitution_cipher
+from py.substitutionCipher import substitution_cipher,decrypt_substitution_cipher, brute_force_substitution_cipher
 from py.permutationCipher import permutation_cipher, decrypt_permutation_cipher, brute_force_permutation_cipher
 
 app = Flask(__name__)
@@ -112,15 +112,15 @@ def substitution_decrypt():
     return jsonify(decryptedText = f"{decrypted_text}")
 
 
-# @app.route('/substitution_brute_decrypt', methods=['POST'])
-# def substitution_brute_decrypt():
-#     text = request.json['text']
-#
-#     decrypted_text = brute_force_shift_cipher(text)
-#     return jsonify(decryptedText = f"{decrypted_text}")
-#
-#
-#
+@app.route('/substitution_brute_decrypt', methods=['POST'])
+def substitution_brute_decrypt():
+    text = request.json['text']
+    print(1)
+    decrypted_text = brute_force_substitution_cipher(text)
+    return jsonify(decryptedText = f"{decrypted_text}")
+
+
+
 
 
 

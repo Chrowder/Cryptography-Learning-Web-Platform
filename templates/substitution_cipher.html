@@ -197,7 +197,7 @@
                     </div>
                 </div>
                 <div class="tooltip-container">
-                    <input class="key-input" placeholder="Key..." id="key" type="number" min="0" max="26" >
+                    <input class="key-input" placeholder="Key..." id="key" >
                     <span class="tooltiptext">The key value should be [0, 26]</span>
                 </div>
 
@@ -290,27 +290,27 @@
                 hideElement('result');
                 return;
             }
-            return;
 
-            // var textInput = document.querySelector('.input').value;
-            //
-            // var decryptedText = 'Decryption is not yet implemented.';
-            // fetch('/substitution_brute_decrypt', {
-            //     method: 'POST',
-            //     headers: {'Content-Type': 'application/json'},
-            //     body: JSON.stringify({
-            //         text: textInput,
-            //     }),
-            // })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         document.querySelector('.output').value = data.decryptedText;
-            //     });
-            //
-            //
-            // document.getElementById('resultLabel').innerText = 'Decrypted message without key.';
-            // showElement('result');
-            // scrollTo('result');
+
+            var textInput = document.querySelector('.input').value;
+
+            var decryptedText = 'Decryption is not yet implemented.';
+            fetch('/substitution_brute_decrypt', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    text: textInput,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.querySelector('.output').value = data.decryptedText;
+                });
+
+
+            document.getElementById('resultLabel').innerText = 'Decrypted message without key.';
+            showElement('result');
+            scrollTo('result');
 
 
         }
