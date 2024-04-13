@@ -9,142 +9,8 @@
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya:Alegreya:500,500i,700">
-    <!---->
-    <style>
 
-        body, h1, h2, h3, h4, h5, h6, html, .nav-links a {
-            font-family: Alegreya, Helvetica, Arial, sans-serif;
-            text-rendering: optimizeLegibility
-        }
-
-        body {
-            padding-bottom: 0;
-            font-size: 1em;
-            background: #f0f0f0;
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column
-        }
-
-        header {
-            padding: 20px 0
-        }
-
-        section {
-            padding: 2em 0 1.5em
-        }
-
-        section.nopadding {
-            padding: 1em 0 0
-        }
-
-
-        .footer {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-            background: #000
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700
-        }
-
-        .bg-footer, .bg-navbar {
-            background-color: #000
-        }
-
-
-        .section3 {
-            background-color: #f0f0f0;
-            color: #000
-        }
-
-
-        ul.linklist li:before {
-            content: '\1F517';
-            position: absolute;
-            left: 0
-        }
-
-
-        .key-input, .input, .output {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        /*.key-input {*/
-        /*    width: calc(100%);*/
-        /*    padding: 10px;*/
-        /*    border: 1px solid #ddd;*/
-        /*    border-radius: 4px;*/
-        /*    box-sizing: border-box;*/
-        /*}*/
-
-        .button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: inline-block;
-            margin-right: 10px;
-            margin-bottom: 20px;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-
-        .nav-links a {
-            color: white;
-            margin: 0 15px;
-        }
-
-        .nav-links a:hover {
-            text-decoration: underline;
-        }
-
-        .file-upload {
-            visibility: hidden;
-            width: 0;
-            height: 0;
-        }
-
-        .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: black;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 10px 20px;
-
-            /* 位置 */
-            position: absolute;
-            z-index: 1;
-            bottom: 100%; /* 在key-input的上方 */
-            left: 100%; /* 悬浮窗的左边缘与key-input的右边缘对齐 */
-            margin-left: 10px; /* 悬浮窗与key-input之间稍微有一些水平距离 */
-            margin-bottom: 5px; /* 悬浮窗与key-input之间的垂直距离 */
-
-        }
-
-        .tooltip-container:hover .tooltiptext {
-            visibility: visible;
-        }
-
-        .tooltip-container {
-            position: relative;
-            width: calc(100%);
-        }
-
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 
 </head>
@@ -188,42 +54,50 @@
                     <h2 id="tool" class="bookmark" style="margin-bottom: 10px">Permutation Cipher Tool</h2>
                 </div>
                 <div>
-                    <textarea class="input" rows="5" style="margin-bottom: 10px" placeholder="Enter text to encrypt or decrypt..." id="srcText"></textarea>
+                    <textarea class="input" rows="5" style="margin-bottom: 10px"
+                              placeholder="Enter text to encrypt or decrypt..." id="srcText"></textarea>
                 </div>
                 <div>
                     <button class="button" id="Paste" onclick="pasteClick();">Paste</button>
-                    <div class="button" id="uploadButton">Upload
+                    <div class="button" id="uploadButton" onclick="uploadClick();">Upload
                         <input type="file" id="fileUpload" name="fileUpload" class="file-upload">
                     </div>
                 </div>
                 <div class="tooltip-container">
                     <input class="key-input" placeholder="Key..." id="key" type="number">
-<!--                    <span class="tooltiptext">The key value should be [0, 26]</span>-->
+                    <!--                    <span class="tooltiptext">The key value should be [0, 26]</span>-->
                 </div>
 
-                <div>
+                <div style="display: flex; align-items: center;">
                     <button class="button" id="encryptButton" onclick="encryptClick();">Encrypt</button>
                     <button class="button" id="decryptButton" onclick="decryptClick();">Decrypt</button>
-                    <button class="button" id="decryptWithoutKeyButton" onclick="bruteDecryptClick()">Decrypt Without Key</button>
+                    <button class="button" id="decryptWithoutKeyButton" onclick="bruteDecryptClick()">Decrypt Without
+                        Key
+                    </button>
+                    <button class="loader" id="loader"></button>
                 </div>
 
                 <div id="result" class="collapse bookmark-small">
                     <hr/>
                     <h3>Results</h3>
                     <label id="resultLabel" class="badge badge-dark" for="resultText"></label>
-                    <textarea class="output" rows="3" id="resultText" readonly></textarea>
-                    <button class="button" id="copyButton">Copy</button>
-                    <button class="button" id="downloadButton">Download</button>
+                    <textarea class="output" rows="5" id="resultText" readonly></textarea>
+                    <button class="button" id="copyButton" onclick="copyClick();">Copy</button>
+                    <button class="button" id="downloadButton" onclick="downloadClick();">Download</button>
                 </div>
             </div>
 
         </section>
     </div>
 
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+
     <script>
 
         function encryptClick() {
-            if (!checkText() || !checkKey()){
+            if (!checkText() || !checkKey()) {
                 hideElement('result');
                 return;
             }
@@ -250,12 +124,12 @@
             scrollTo('result');
         }
 
+
         function decryptClick() {
-            if (!checkText() || !checkKey()){
+            if (!checkText() || !checkKey()) {
                 hideElement('result');
                 return;
             }
-
 
 
             var keyInput = document.querySelector('.key-input').value;
@@ -283,13 +157,16 @@
 
         }
 
-        function bruteDecryptClick(){
 
-            if (!checkText()){
+        function bruteDecryptClick() {
+
+            if (!checkText()) {
                 hideElement('result');
                 return;
             }
 
+            var loader = document.getElementById('loader');
+            loader.style.display = "inline-block";
 
             var textInput = document.querySelector('.input').value;
 
@@ -303,7 +180,9 @@
             })
                 .then(response => response.json())
                 .then(data => {
+                    loader.style.display = "none";
                     document.querySelector('.output').value = data.decryptedText;
+                    document.getElementById('key').value = data.key;
                 });
 
 
@@ -316,118 +195,7 @@
         }
 
 
-
-        function showElement(id) {
-            document.getElementById(id).classList.remove('collapse');
-        }
-
-        function hideElement(id) {
-            document.getElementById(id).classList.add('collapse');
-        }
-
-        function scrollTo(id) {
-            document.getElementById(id).scrollIntoView({behavior: "smooth"});
-        }
-
-        function checkText() {
-            if (document.getElementById('srcText').value.length === 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function checkKey() {
-            if (document.getElementById('key').value.length === 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-
-        function pasteClick(){
-            if (navigator.clipboard != undefined && navigator.clipboard.readText != null) {
-                navigator.clipboard.readText().then(function (text) {
-                    document.getElementById("srcText").value = text;
-
-                }).catch(function () {
-                    alert('Failed to read from clipboard. Access denied.');
-                });
-            } else {
-                var savedtext = document.cookie.match('(^|;)\s?savedtext=([^;]*)(;|$)');
-                if (savedtext) {
-                    document.getElementById("srcText").value = decodeURIComponent(savedtext[2]);
-                }
-            }
-        }
-
-        document.getElementById('uploadButton').addEventListener('click', function() {
-            document.getElementById('fileUpload').click();
-        });
-
-
-
-        document.getElementById('fileUpload').addEventListener('change', function(event) {
-
-            if (event.target.files.length > 0) {
-                var file = event.target.files[0];
-
-                if (file.type === "text/plain") {
-                    var reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        var content = e.target.result;
-                        document.querySelector('.input').value = content;
-                    };
-
-                    reader.readAsText(file);
-                } else {
-                    console.log("Please upload a .txt file.");
-                }
-            }
-        });
-
-        document.getElementById('copyButton').addEventListener('click', function() {
-
-            var selectedText = document.querySelector('.output').value;
-
-            if (selectedText !== "") {
-                navigator.clipboard.writeText(selectedText).then(function() {
-                    console.log('Text successfully copied to clipboard');
-                }).catch(function(err) {
-                    console.error('Could not copy text: ', err);
-                });
-            }
-        });
-
-
-        document.getElementById('downloadButton').addEventListener('click', function() {
-
-            var selectedText = document.querySelector('.output').value;
-
-
-            var blob = new Blob([selectedText], { type: 'text/plain' });
-
-
-            var downloadUrl = URL.createObjectURL(blob);
-
-
-            var downloadLink = document.createElement('a');
-            downloadLink.href = downloadUrl;
-            downloadLink.download = document.getElementById('resultLabel').innerText + ".txt"; // 文件名
-
-
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-
-
-            document.body.removeChild(downloadLink);
-            URL.revokeObjectURL(downloadUrl);
-        });
-
     </script>
-
 
 
 </main>

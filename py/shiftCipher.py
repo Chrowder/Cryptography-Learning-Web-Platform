@@ -32,4 +32,4 @@ def brute_force_shift_cipher(text):
         decrypted = shift_cipher(text, -shift)
         decrypted_text, flag = is_sentence(decrypted)
         if flag:
-            return decrypted_text
+            return decrypted_text, shift

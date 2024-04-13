@@ -21,13 +21,6 @@ def permutation_cipher(text, key):
 
     return enc
 
-# Example usage
-# key = [3,5,1,6,4,2]
-# key = "351642"
-# key = [int(digit) for digit in key]
-# text = "shesellsseashellsbytheseashore"
-#
-# print(permutation_cipher(text, key))
 
 
 def decrypt_permutation_cipher(text, key):
@@ -61,11 +54,14 @@ def brute_force_permutation_cipher(text):
             print(key)
             dec = decrypt_permutation_cipher(text, key)
             res, flag = is_sentence(dec)
-            if (flag == True):
-                return res
+            if flag:
+                return res, key
         n += 1
 
 
+
+
+#
 # text = """
 # The Python replication of the countWordsInText function successfully identifies and counts common English words within a given text.
 # For the example text, "This is a simple test of the countWordsInText function, aiming to see how it performs,"
@@ -78,5 +74,6 @@ def brute_force_permutation_cipher(text):
 # print(enText)
 # deText = decrypt_permutation_cipher(enText, key)
 # print(deText)
-# brText = brute_force_permutation_cipher(enText)
+# brText, new_key = brute_force_permutation_cipher(enText)
 # print(brText)
+# print(new_key)

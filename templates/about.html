@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya:Alegreya:500,500i,700">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        .about-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-section h2 {
+            color: #333;
+            font-family: 'Alegreya', serif;
+        }
+
+        .about-section p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .about-section a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .about-section a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+
+<body>
+<main style="flex: 1;">
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-navbar sticky-top" id="mainNav">
+
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shift_cipher">Shift Cipher</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/permutation_cipher">Permutation Cipher</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/substitution_cipher">Substitution Cipher</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">ABOUT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <section class="section3 about-section">
+            <h2>About This Website</h2>
+            <p>
+                This website is designed by Yinuo Chen, a cryptography enthusiast and developer. The purpose of this
+                site is to provide interactive tools and resources for exploring classical cryptographic methods,
+                including Shift Cipher, Permutation Cipher, and Substitution Cipher. These tools allow users to encrypt,
+                decrypt, and perform cryptanalysis without a key, offering a hands-on approach to understanding these
+                ancient techniques.
+            </p>
+            <p>
+                For those interested in deepening their knowledge of cryptography, the website recommends the book
+                "Cryptography Theory and Practice" (2nd Edition, Classical Cryptography) as an excellent resource.
+                Additionally, further insights and practical examples can be found at <a
+                    href="http://practicalcryptography.com" target="_blank">Practical Cryptography</a>.
+            </p>
+            <p>
+                For any inquiries, feedback, or suggestions, please feel free to contact Yinuo at <a
+                    href="mailto:sgyche78@liverpool.ac.uk">sgyche78@liverpool.ac.uk</a>.
+            </p>
+        </section>
+
+    </div>
+
+
+</main>
+
+
+<footer class="footer ">
+    <div class="container text-white">
+            <span>
+                &copy; 2024 Yinuo Chen. All rights reserved.
+            </span>
+
+    </div>
+</footer>
+</body>
+
+
+</html>

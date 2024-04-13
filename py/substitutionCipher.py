@@ -60,7 +60,6 @@ def brute_force_substitution_cipher(text):
             if score > parentScore:
                 parentScore = score
                 parentKey = child[:]
-                print(parentScore)
                 count = 0
             count = count + 1
         # keep track of best score seen so far
@@ -71,7 +70,10 @@ def brute_force_substitution_cipher(text):
             if flag:
                 print(res)
                 print(maxKey)
-                return res
+                maxKey = [str(i) for i in maxKey]
+                # 使用空格连接字符串
+                maxKey = ''.join(maxKey)
+                return res, maxKey
 
 
 

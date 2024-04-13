@@ -28,7 +28,9 @@ def permutation_cipher_page():
 def substitution_cipher_page():
     return render_template('substitution_cipher.html')
 
-
+@app.route('/about')
+def about_page():
+    return render_template('about.html')
 
 
 
@@ -54,8 +56,12 @@ def shift_decrypt():
 def shift_brute_decrypt():
     text = request.json['text']
 
-    decrypted_text = brute_force_shift_cipher(text)
-    return jsonify(decryptedText = f"{decrypted_text}")
+    decrypted_text, key = brute_force_shift_cipher(text)
+    response_data = {
+        'key': key,
+        'decryptedText': decrypted_text
+    }
+    return jsonify(response_data)
 
 
 
@@ -86,8 +92,12 @@ def permutation_decrypt():
 def permutation_brute_decrypt():
     text = request.json['text']
 
-    decrypted_text = brute_force_permutation_cipher(text)
-    return jsonify(decryptedText = f"{decrypted_text}")
+    decrypted_text, key = brute_force_permutation_cipher(text)
+    response_data = {
+        'key': key,
+        'decryptedText': decrypted_text
+    }
+    return jsonify(response_data)
 
 
 
@@ -116,8 +126,12 @@ def substitution_decrypt():
 def substitution_brute_decrypt():
     text = request.json['text']
     print(1)
-    decrypted_text = brute_force_substitution_cipher(text)
-    return jsonify(decryptedText = f"{decrypted_text}")
+    decrypted_text, key = brute_force_substitution_cipher(text)
+    response_data = {
+        'key': key,
+        'decryptedText': decrypted_text
+    }
+    return jsonify(response_data)
 
 
 
