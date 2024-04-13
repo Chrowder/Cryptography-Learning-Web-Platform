@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from py.shiftCipher import shift_cipher, brute_force_shift_cipher
-from py.substitutionCipher import substitution_cipher,decrypt_substitution_cipher, brute_force_substitution_cipher
-from py.permutationCipher import permutation_cipher, decrypt_permutation_cipher, brute_force_permutation_cipher
+
+from MyCipher.permutationCipher import permutation_cipher, decrypt_permutation_cipher, brute_force_permutation_cipher
+from MyCipher.shiftCipher import shift_cipher, brute_force_shift_cipher
+from MyCipher.substitutionCipher import substitution_cipher,decrypt_substitution_cipher, brute_force_substitution_cipher
+
+
+
 
 app = Flask(__name__)
 

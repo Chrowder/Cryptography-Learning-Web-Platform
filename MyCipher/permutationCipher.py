@@ -1,7 +1,7 @@
 from itertools import permutations
 
-from py.validation import is_sentence
-
+from MyCipher.validation import is_sentence
+from MyCipher.ngram_score import ngram_score
 
 def permutation_cipher(text, key):
     length_text = len(text)
@@ -45,26 +45,53 @@ def generate_permutations(n):
         return all_permutations
 
 
+# def brute_force_permutation_cipher(text):
+#     flag = False
+#     n = 2
+#     while flag == False:
+#         possible_key = generate_permutations(n)
+#         for key in possible_key:
+#             print(key)
+#             dec = decrypt_permutation_cipher(text, key)
+#             res, flag = is_sentence(dec)
+#             if flag:
+#                 return res, key
+#         n += 1
+
 def brute_force_permutation_cipher(text):
     flag = False
     n = 2
+    count = 0
+    fitness = ngram_score('MyCipher/quadgrams.txt')
+    maxScore = -99e9
+    mostLikely_key = [1]
+    mostLikely_dec = ""
     while flag == False:
         possible_key = generate_permutations(n)
         for key in possible_key:
+            count += 1
             print(key)
             dec = decrypt_permutation_cipher(text, key)
-            res, flag = is_sentence(dec)
-            if flag:
-                return res, key
+            clean_text = "".join(filter(str.isalpha, dec)).upper()
+            clean_text = clean_text[:1000]
+            score = fitness.score(clean_text)
+            if score > maxScore:
+                maxScore = score
+                mostLikely_key = key
+                mostLikely_dec = dec
+                count = 0
+            if count > 500:
+                count = 0
+                res, flag = is_sentence(mostLikely_dec)
+                if flag:
+                    return res, mostLikely_key
         n += 1
-
-
 
 
 #
 # text = """
 # The Python replication of the countWordsInText function successfully identifies and counts common English words within a given text.
-# For the example text, "This is a simple test of the countWordsInText function, aiming to see how it performs,"
+# For the example text, "This is a simple tests of the countWordsInText function, aiming to see how it performs,"
 # it found that 6 of the words are among the specified common words.
 # This function can now be used in conjunction with the earlier brute-force Caesar cipher decryption to more accurately identify the correct decryption by maximizing the number of recognizable words.
 # """

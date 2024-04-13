@@ -64,7 +64,7 @@
                 </div>
                 <div class="tooltip-container">
                     <input class="key-input" placeholder="Key..." id="key">
-<!--                    <span class="tooltiptext">The key value should be [0, 26]</span>-->
+                    <!--                    <span class="tooltiptext">The key value should be [0, 26]</span>-->
                 </div>
 
                 <div style="display: flex; align-items: center;">
@@ -115,9 +115,10 @@
                 .then(response => response.json())
                 .then(data => {
                     document.querySelector('.output').value = data.encryptedText;
+                    document.getElementById('resultLabel').innerText = 'Encrypted message';
                 });
 
-            document.getElementById('resultLabel').innerText = 'Encrypted message';
+
             showElement('result');
             scrollTo('result');
 
@@ -147,10 +148,10 @@
                 .then(response => response.json())
                 .then(data => {
                     document.querySelector('.output').value = data.decryptedText;
+                    document.getElementById('resultLabel').innerText = 'Decrypted message.';
                 });
 
 
-            document.getElementById('resultLabel').innerText = 'Decrypted message.';
             showElement('result');
             scrollTo('result');
 
@@ -182,10 +183,10 @@
                     loader.style.display = "none";
                     document.querySelector('.output').value = data.decryptedText;
                     document.getElementById('key').value = data.key;
+                    document.getElementById('resultLabel').innerText = 'Decrypted message without key.';
                 });
 
 
-            document.getElementById('resultLabel').innerText = 'Decrypted message without key.';
             showElement('result');
             scrollTo('result');
 

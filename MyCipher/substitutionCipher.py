@@ -1,7 +1,7 @@
 import random
 import re
-from py.ngram_score import ngram_score
-from py.validation import is_sentence
+from MyCipher.ngram_score import ngram_score
+from MyCipher.validation import is_sentence
 
 def substitution_cipher(text, key):
     result = ''
@@ -35,7 +35,7 @@ def decrypt_substitution_cipher(text, key):
 
 def brute_force_substitution_cipher(text):
 
-    fitness = ngram_score('py/quadgrams.txt')
+    fitness = ngram_score('MyCipher/quadgrams.txt')
     maxKey = list('abcdefghijklmnopqrstuvwxyz')
     maxScore = -99e9
     parentScore, parentKey = maxScore, maxKey[:]
@@ -45,6 +45,7 @@ def brute_force_substitution_cipher(text):
         random.shuffle(parentKey)
         deciphered = decrypt_substitution_cipher(text, parentKey)
         clean_text = "".join(filter(str.isalpha, deciphered)).upper()
+        clean_text = clean_text[:1000]
         parentScore = fitness.score(clean_text)
         count = 0
         while count < 1000:
@@ -55,6 +56,7 @@ def brute_force_substitution_cipher(text):
             child[a], child[b] = child[b], child[a]
             deciphered = decrypt_substitution_cipher(text, child)
             clean_text = "".join(filter(str.isalpha, deciphered)).upper()
+            clean_text = clean_text[:1000]
             score = fitness.score(clean_text)
             # if the child was better, replace the parent with it
             if score > parentScore:
@@ -88,9 +90,9 @@ def brute_force_substitution_cipher(text):
 #
 # The Simple substitution cipher is one of the simplest ciphers, simple enough that it can usually be broken with pen and paper in a few minutes. On this page we will focus on automatic cryptanalysis of substitution ciphers, i.e. writing programs to solve these ciphers for us.
 #
-# The substitution cipher is more complicated than the Caesar and Affine ciphers. In those cases, the number of keys were 25 and 311 respectively. This allowed a brute force solution of trying all possible keys. The number of keys possible with the substitution cipher is much higher, around 2^88 possible keys. This means we cannot test them all, we have to 'search' for good keys.
+# The substitution cipher is more complicated than the Caesar and Affine ciphers. In those cases, the number of keys were 25 and 311 respectively. This allowed a brute force solution of trying all possible keys. The number of keys possible with the substitution cipher is much higher, around 2^88 possible keys. This means we cannot tests them all, we have to 'search' for good keys.
 #
-# We will be using a 'hill-climbing' algorithm to find the correct key. For this approach, we need a way of determining how similar a piece of text is to english text. This is called rating the 'fitness' of the text. A piece of text very similar to english will get a high score (a high fitness), while a jumble of random characters will get a low score (a low fitness). For this we will use a fitness measure based on quadgram statistics. For a guide on how to generate quadgram statistics, and some python code for rating the fitness of text, see this tutorial. This method works by first determining the statistics of english text, then calculating the probability that the ciphertext comes from the same distribution. An incorrectly deciphered (i.e. using the wrong key) message will probably contain sequences e.g. 'QKPC' which are very rare in normal english. In this way we can rank different decryption keys, the decryption key we want is the one that produces deciphered text with the highest likelyhood.
+# We will be using a 'hill-climbing' algorithm to find the correct key. For this approach, we need a way of determining how similar a piece of text is to english text. This is called rating the 'fitness' of the text. A piece of text very similar to english will get a high score (a high fitness), while a jumble of random characters will get a low score (a low fitness). For this we will use a fitness measure based on quadgram statistics. For a guide on how to generate quadgram statistics, and some MyCipher code for rating the fitness of text, see this tutorial. This method works by first determining the statistics of english text, then calculating the probability that the ciphertext comes from the same distribution. An incorrectly deciphered (i.e. using the wrong key) message will probably contain sequences e.g. 'QKPC' which are very rare in normal english. In this way we can rank different decryption keys, the decryption key we want is the one that produces deciphered text with the highest likelyhood.
 #
 # The hill-climbing algorithm looks like this:
 #

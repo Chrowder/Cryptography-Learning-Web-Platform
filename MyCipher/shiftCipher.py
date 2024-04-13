@@ -1,4 +1,4 @@
-from py.validation import is_sentence
+from MyCipher.validation import is_sentence
 
 def shift_cipher(text, key):
     result = ''
