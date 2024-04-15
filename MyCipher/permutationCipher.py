@@ -1,5 +1,5 @@
 from itertools import permutations
-
+import re
 from MyCipher.validation import is_sentence
 from MyCipher.ngram_score import ngram_score
 
@@ -30,6 +30,7 @@ def decrypt_permutation_cipher(text, key):
         new_key[index - 1] = i + 1
         
     dec = permutation_cipher(text, new_key)
+    dec = re.sub(r'\*+$', '', dec)
     return dec
 
 from itertools import permutations
@@ -84,6 +85,7 @@ def brute_force_permutation_cipher(text):
                 count = 0
                 res, flag = is_sentence(mostLikely_dec)
                 if flag:
+                    res = re.sub(r'\*+$', '', res)
                     return res, mostLikely_key
         n += 1
 
