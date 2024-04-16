@@ -76,8 +76,7 @@ def permutation_encrypt():
     text = request.json['text']
     key = request.json['key']
 
-    encrypted_text = permutation_cipher(text, [int(digit) for digit in key])
-
+    encrypted_text = permutation_cipher(text, [int(digit) for digit in key.split()])
 
     return jsonify(encryptedText = f"{encrypted_text}")
 
@@ -86,7 +85,7 @@ def permutation_encrypt():
 def permutation_decrypt():
     text = request.json['text']
     key = request.json['key']
-    decrypted_text = decrypt_permutation_cipher(text, [int(digit) for digit in key])
+    decrypted_text = decrypt_permutation_cipher(text, [int(digit) for digit in key.split()])
 
     return jsonify(decryptedText = f"{decrypted_text}")
 

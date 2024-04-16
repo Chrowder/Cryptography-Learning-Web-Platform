@@ -45,9 +45,9 @@
         </div>
     </nav>
 
+    <section class="section3">
+        <div class="container">
 
-    <div class="container">
-        <section class="section3">
             <div class="jumbotron">
                 <div>
                     <h2 id="tool" class="bookmark" style="margin-bottom: 10px">Substitution Cipher Tool</h2>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="tooltip-container">
                     <input class="key-input" placeholder="Key..." id="key">
-                    <!--                    <span class="tooltiptext">The key value should be [0, 26]</span>-->
+                    <span class="tooltiptext">The key value should be in non-alphabetical order, e.g. "xnyahpogzqwbtsflrcvmuekjdi".</span>
                 </div>
 
                 <div style="display: flex; align-items: center;">
@@ -86,9 +86,22 @@
                 </div>
             </div>
 
-        </section>
-    </div>
+            <p>
+                The substitution cipher with the key "xnyahpogzqwbtsflrcvmuekjdi" is a type of monoalphabetic
+                substitution cipher. In this cipher, each letter of the plaintext is replaced by a corresponding letter
+                from the key. For instance, 'a' becomes 'x', 'b' becomes 'n', and so on, throughout the alphabet. This
+                cipher transforms the text using a fixed, one-to-one mapping from plaintext to ciphertext letters.
+            </p>
+            <p>
+                Decrypting the message requires reversing the substitution using the same key. Although more secure
+                against basic attacks than simpler ciphers, like the Caesar cipher, it can still be vulnerable to
+                frequency analysis, where an attacker uses the frequency of letters in the ciphertext to guess the
+                substitutions.
+            </p>
 
+
+        </div>
+    </section>
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 

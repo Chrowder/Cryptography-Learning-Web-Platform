@@ -98,7 +98,7 @@ ul.linklist li:before {
 
 .tooltiptext {
     visibility: hidden;
-    width: 200px;
+    width: 250px;
     background-color: black;
     color: #fff;
     text-align: center;
@@ -108,10 +108,10 @@ ul.linklist li:before {
 
     position: absolute;
     z-index: 1;
-    bottom: 100%; /* 在key-input的上方 */
-    left: 100%; /* 悬浮窗的左边缘与key-input的右边缘对齐 */
-    margin-left: 10px; /* 悬浮窗与key-input之间稍微有一些水平距离 */
-    margin-bottom: 5px; /* 悬浮窗与key-input之间的垂直距离 */
+    bottom: 100%;
+    left: 100%;
+    margin-left: 10px;
+    margin-bottom: 5px;
 
 }
 
@@ -127,12 +127,12 @@ ul.linklist li:before {
 
 .loader {
 
-    display: none; /* 初始不显示 */
-    border: 8px solid #f3f3f3; /* 内圈颜色 */
-    border-top: 8px solid #007bff; /* 动画颜色与按钮背景一致 */
-    border-radius: 50%; /* 完全圆形 */
-    width: 38px; /* 与按钮高度相同 */
-    height: 38px; /* 与按钮高度相同 */
+    display: none;
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #007bff;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
     margin-left: 10px;
     animation: spin 2s linear infinite;
 }

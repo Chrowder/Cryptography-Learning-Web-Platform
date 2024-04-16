@@ -46,9 +46,9 @@
         </div>
     </nav>
 
+    <section class="section3">
+        <div class="container">
 
-    <div class="container">
-        <section class="section3">
             <div class="jumbotron">
                 <div>
                     <h2 id="tool" class="bookmark" style="margin-bottom: 10px">Permutation Cipher Tool</h2>
@@ -64,8 +64,8 @@
                     </div>
                 </div>
                 <div class="tooltip-container">
-                    <input class="key-input" placeholder="Key..." id="key" type="number">
-                    <!--                    <span class="tooltiptext">The key value should be [0, 26]</span>-->
+                    <input class="key-input" placeholder="Key..." id="key">
+                    <span class="tooltiptext">The key value should be non-sequential numbers 1-n separated by spaces, e.g. "3 5 1 6 4 2".</span>
                 </div>
 
                 <div style="display: flex; align-items: center;">
@@ -87,9 +87,27 @@
                 </div>
             </div>
 
-        </section>
-    </div>
+            <p>
+                The Permutation cipher is another type of classical encryption method, which belongs to the category of
+                transposition ciphers. Unlike substitution ciphers like the Caesar cipher, which replace characters with
+                other characters, transposition ciphers rearrange the positions of the characters in the plaintext to
+                create ciphertext.
+            </p>
+            <p>
+                In a Permutation cipher, the order of the characters in the plaintext is scrambled according to a
+                predefined system or key. This key determines the permutation pattern used to rearrange the letters or
+                symbols. For instance, if the plaintext is "HELLO" and the permutation pattern defined by the key is [4,
+                3, 1, 5, 2], then the ciphertext would be "LOHEL".
+            </p>
+            <p>
+                To encrypt and decrypt messages, the same permutation pattern must be used. If the permutation pattern
+                is kept secret and is sufficiently complex, it can provide a reasonable level of security. However, as
+                with many classical ciphers, permutation ciphers are generally vulnerable to modern cryptanalysis
+                techniques, especially if the amount of encrypted data is sufficient to analyze patterns.
+            </p>
 
+        </div>
+    </section>
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 

@@ -86,6 +86,8 @@ def brute_force_permutation_cipher(text):
                 res, flag = is_sentence(mostLikely_dec)
                 if flag:
                     res = re.sub(r'\*+$', '', res)
+                    mostLikely_key = [str(num) for num in mostLikely_key]
+                    mostLikely_key = ' '.join(mostLikely_key)
                     return res, mostLikely_key
         n += 1
 

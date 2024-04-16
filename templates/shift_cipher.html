@@ -46,9 +46,9 @@
         </div>
     </nav>
 
+    <section class="section3">
+        <div class="container">
 
-    <div class="container">
-        <section class="section3">
             <div class="jumbotron">
                 <div>
                     <h2 id="tool" class="bookmark" style="margin-bottom: 10px">Shift Cipher Tool</h2>
@@ -87,9 +87,21 @@
                 </div>
             </div>
 
-        </section>
-    </div>
+            <p>
+                The Shift cipher, also known as the Caesar cipher, is an ancient encryption technique that falls under
+                the category of substitution ciphers. It operates by shifting each letter in the plaintext by a fixed
+                number of positions in the alphabet. For example, if the shift is 3, then 'A' would be replaced by 'D',
+                'B' would turn into 'E', and so on. When the end of the alphabet is reached, the cipher wraps around to
+                the beginning, meaning 'Z' would be followed by 'A'.
+            </p>
+            <p>
+                To use this cipher, one simply selects a shift value and applies this shift to encrypt or decrypt the
+                text. Although this method is easily decipherable with modern technology, it was once a relatively
+                effective means of secret communication, especially in eras with less advanced information technology.
+            </p>
 
+        </div>
+    </section>
 
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
