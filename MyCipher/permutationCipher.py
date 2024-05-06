@@ -42,7 +42,7 @@ def generate_permutations(n):
     else:
         numbers = list(range(1, n + 1))
         all_permutations = list(permutations(numbers))
-        all_permutations = all_permutations[1:]
+        all_permutations = all_permutations[0:]
         return all_permutations
 
 
