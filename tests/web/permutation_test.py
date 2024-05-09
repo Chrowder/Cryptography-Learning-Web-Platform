@@ -41,7 +41,6 @@ def test_permutation_encrypt_351642():
     result_element = driver.find_element(By.ID, "resultText")
     result_text = result_element.get_attribute('value')
 
-    # 断言结果是否符合预期
     assert result_text == text_permutation_351642
 
 
