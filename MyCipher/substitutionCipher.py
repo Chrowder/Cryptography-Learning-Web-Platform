@@ -33,9 +33,9 @@ def decrypt_substitution_cipher(text, key):
     return result
 
 
-def brute_force_substitution_cipher(text):
+def brute_force_substitution_cipher(text, quadgrams='MyCipher/quadgrams.txt'):
 
-    fitness = ngram_score('MyCipher/quadgrams.txt')
+    fitness = ngram_score(quadgrams)
     maxKey = list('abcdefghijklmnopqrstuvwxyz')
     maxScore = -99e9
     parentScore, parentKey = maxScore, maxKey[:]
@@ -70,10 +70,9 @@ def brute_force_substitution_cipher(text):
             deciphered = decrypt_substitution_cipher(text, maxKey)
             res, flag = is_sentence(deciphered)
             if flag:
-                print(res)
-                print(maxKey)
+                # print(res)
+                # print(maxKey)
                 maxKey = [str(i) for i in maxKey]
-                # 使用空格连接字符串
                 maxKey = ''.join(maxKey)
                 return res, maxKey
 

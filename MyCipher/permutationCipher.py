@@ -33,7 +33,6 @@ def decrypt_permutation_cipher(text, key):
     dec = re.sub(r'\*+$', '', dec)
     return dec
 
-from itertools import permutations
 
 
 def generate_permutations(n):
@@ -46,24 +45,26 @@ def generate_permutations(n):
         return all_permutations
 
 
-# def brute_force_permutation_cipher(text):
-#     flag = False
-#     n = 2
-#     while flag == False:
-#         possible_key = generate_permutations(n)
-#         for key in possible_key:
-#             print(key)
-#             dec = decrypt_permutation_cipher(text, key)
-#             res, flag = is_sentence(dec)
-#             if flag:
-#                 return res, key
-#         n += 1
+def brute_force_permutation_cipher_old(text):
+    flag = False
+    n = 2
+    while flag == False:
+        possible_key = generate_permutations(n)
+        for key in possible_key:
+            # print(key)
+            dec = decrypt_permutation_cipher(text, key)
+            res, flag = is_sentence(dec)
+            if flag:
+                res = re.sub(r'\*+$', '', res)
+                return res, key
+        n += 1
 
-def brute_force_permutation_cipher(text):
+
+def brute_force_permutation_cipher(text, quadgrams='MyCipher/quadgrams.txt'):
     flag = False
     n = 2
     count = 0
-    fitness = ngram_score('MyCipher/quadgrams.txt')
+    fitness = ngram_score(quadgrams)
     maxScore = -99e9
     mostLikely_key = [1]
     mostLikely_dec = ""
@@ -71,7 +72,7 @@ def brute_force_permutation_cipher(text):
         possible_key = generate_permutations(n)
         for key in possible_key:
             count += 1
-            print(key)
+            # print(key)
             dec = decrypt_permutation_cipher(text, key)
             clean_text = "".join(filter(str.isalpha, dec)).upper()
             clean_text = clean_text[:1000]

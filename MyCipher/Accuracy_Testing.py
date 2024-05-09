@@ -45,7 +45,8 @@ def calculate_ber(original_text, corrupted_text):
 
 
 
-original_text = "Example text for entropy calculation."
-corrupted_text = "Excmple text for entropy calculatton."
-
-calculate_ber(original_text, corrupted_text)
+# original_text = "Example text for entropy calculation."
+# corrupted_text = "Excmple text for entropy calculatton."
+#
+# ber = calculate_ber(original_text, corrupted_text)
+# print(ber)
